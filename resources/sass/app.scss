@@ -6,6 +6,21 @@
 @import "functions";
 @import "normalize";
 
+// Reset
+*,
+*::after,
+*::before {
+    transition: 0.3s all ease-in-out;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
@@ -45,11 +60,11 @@ main {
         }
     }
 
-    .task-list {
+    .todo-list {
         @include grid-center();
         width: 100%;
 
-        .task {
+        .todo {
             width: 100%;
             @include flex-center();
             justify-content: flex-start;
@@ -57,10 +72,9 @@ main {
             border-radius: 0.5rem;
             padding: 0.75rem;
             color: $black;
-            transition: 0.3s all ease-in-out;
             position: relative;
 
-            & + .task {
+            & + .todo {
                 margin-top: 1rem;
             }
 
@@ -70,6 +84,7 @@ main {
                 label {
                     p {
                         text-decoration: line-through;
+                        color: $white;
                     }
                 }
 
@@ -81,6 +96,7 @@ main {
                     top: 13px;
                     left: 14px;
                     font-weight: bold;
+                    color: $white;
                 }
 
                 input[type="checkbox"] {

@@ -23,16 +23,16 @@
                 <input type="text" placeholder="Adicione um item...">
                 <button>+</button>
             </section>
-            <section class="task-list mt-5">
-                <div class="task">
-                    <label for="task-1">
-                        <input type="checkbox" id="task-1">
+            <section class="todo-list mt-5">
+                <div class="todo">
+                    <label for="todo-1">
+                        <input type="checkbox" id="todo-1">
                         <p>Lavar a louça</p>
                     </label>
                 </div>
-                <div class="task done">
-                    <label for="task-2">
-                        <input type="checkbox" id="task-2">
+                <div class="todo done">
+                    <label for="todo-2">
+                        <input type="checkbox" id="todo-2">
                         <p>Lavar a louça</p>
                     </label>
                 </div>

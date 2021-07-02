@@ -370,6 +370,12 @@ video {
     color: rgba(203, 213, 224, var(--text-opacity));
   }
 }
+* {
+  transition: 0.3s all ease-in-out;
+  margin: 0;
+  padding: 0;
+}
+
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -10411,13 +10417,13 @@ main .add-item button {
   font-size: 1rem;
   font-weight: bold;
 }
-main .task-list {
+main .todo-list {
   display: grid;
   align-content: center;
   justify-items: center;
   width: 100%;
 }
-main .task-list .task {
+main .todo-list .todo {
   width: 100%;
   display: flex;
   align-items: center;
@@ -10427,19 +10433,19 @@ main .task-list .task {
   border-radius: 0.5rem;
   padding: 0.75rem;
   color: #1d1e22;
-  transition: 0.3s all ease-in-out;
   position: relative;
 }
-main .task-list .task + .task {
+main .todo-list .todo + .todo {
   margin-top: 1rem;
 }
-main .task-list .task.done {
+main .todo-list .todo.done {
   background-color: #5529dc;
 }
-main .task-list .task.done label p {
+main .todo-list .todo.done label p {
   text-decoration: line-through;
+  color: #fff;
 }
-main .task-list .task.done:before {
+main .todo-list .todo.done:before {
   content: "✔";
   position: absolute;
   width: 16px;
@@ -10447,14 +10453,15 @@ main .task-list .task.done:before {
   top: 13px;
   left: 14px;
   font-weight: bold;
+  color: #fff;
 }
-main .task-list .task.done input[type=checkbox] {
+main .todo-list .todo.done input[type=checkbox] {
   visibility: hidden;
 }
-main .task-list .task:hover {
+main .todo-list .todo:hover {
   box-shadow: rgba(255, 255, 255, 0.2) 0px 5px 15px;
 }
-main .task-list .task label {
+main .todo-list .todo label {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -10469,12 +10476,12 @@ main .task-list .task label {
   cursor: pointer;
   font-weight: 600;
 }
-main .task-list .task p,
-main .task-list .task input {
+main .todo-list .todo p,
+main .todo-list .todo input {
   margin: 0;
   padding: 0;
 }
-main .task-list .task input[type=checkbox] {
+main .todo-list .todo input[type=checkbox] {
   width: 16px;
   height: 16px;
   margin-right: 0.75rem;
