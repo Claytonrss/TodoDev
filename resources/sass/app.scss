@@ -28,18 +28,21 @@ body {
     font-family: "Nunito", sans-serif;
     background-color: $bg_body;
     color: $white;
+    scroll-margin-top: 48px;
 }
 
 header {
     @include grid-center();
-}
-
-main {
-    @include grid-center();
-    width: 100%;
-    max-width: 340px;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: $bg_body;
+    z-index: 2;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 
     .add-item {
+        margin-top: 1rem;
         display: flex;
         border-radius: 0.5rem;
         overflow: hidden;
@@ -59,10 +62,19 @@ main {
             font-weight: bold;
         }
     }
+}
+
+main {
+    @include grid-center();
+    width: 100%;
+    max-width: 340px;
+    padding-bottom: 3rem;
 
     .todo-list {
         @include grid-center();
         width: 100%;
+
+        margin-top: 350px;
 
         .todo {
             width: 100%;

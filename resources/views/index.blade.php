@@ -13,17 +13,17 @@
 
 <body>
     <div class="container">
-        <header class="mt-5">
+        <header>
             <img src="{{ asset('images/logo.svg') }}" alt="Logo da Lista de Tarefas">
             <h1 class="mt-3">TodoDev</h1>
             <h3>A sua lista de tarefas</h3>
-        </header>
-        <main class="mt-5 mx-auto">
             <section class="add-item">
                 <input type="text" placeholder="Adicione um item...">
                 <button>+</button>
             </section>
-            <section class="todo-list mt-5">
+        </header>
+        <main class="mx-auto">
+            <section class="todo-list">
                 
             </section>
         </main>
