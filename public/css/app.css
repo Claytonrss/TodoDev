@@ -370,10 +370,18 @@ video {
     color: rgba(203, 213, 224, var(--text-opacity));
   }
 }
-* {
+*,
+*::after,
+*::before {
   transition: 0.3s all ease-in-out;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
 
 /*!

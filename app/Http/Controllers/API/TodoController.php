@@ -30,7 +30,7 @@ class TodoController extends Controller
         try {
 
             request()->validate([
-                'descricao' => 'required',
+                'description' => 'required',
                 'status' => 'required'
             ]);
 
@@ -48,7 +48,8 @@ class TodoController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'type' => 'error',
-                'msg'  => 'Falha ao tentar gravar a tarefa.'
+                'msg'  => 'Falha ao tentar gravar a tarefa.',
+                'erro' => $th
             ]);
         }
     }

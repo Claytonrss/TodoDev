@@ -24,18 +24,7 @@
                 <button>+</button>
             </section>
             <section class="todo-list mt-5">
-                <div class="todo">
-                    <label for="todo-1">
-                        <input type="checkbox" id="todo-1">
-                        <p>Lavar a louça</p>
-                    </label>
-                </div>
-                <div class="todo done">
-                    <label for="todo-2">
-                        <input type="checkbox" id="todo-2">
-                        <p>Lavar a louça</p>
-                    </label>
-                </div>
+                
             </section>
         </main>
 

@@ -1842,7 +1842,65 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-console.log($("body"));
+$(window).on("load", function () {
+  loadTodos();
+  $(".add-item button").on("click", function () {
+    addTodo();
+  });
+  $(".add-item input").on("keydown", function (_ref) {
+    var key = _ref.key;
+
+    if (key === "Enter") {
+      addTodo();
+    }
+  });
+});
+
+function addTodo() {
+  var description = $(".add-item input").val();
+  var status = 0;
+  $(".add-item input").val("");
+  axios.post("/api/todos", {
+    description: description,
+    status: status
+  }).then(function (response) {
+    var data = response.data;
+
+    if (typeof data.type != "undefined" && data.type == "success") {
+      var todo = data.todo;
+      var todoList = $(".todo-list");
+      todoList.append("<div class=\"todo\">\n                                <label for=\"todo-".concat(todo.id, "\">\n                                    <input type=\"checkbox\" id=\"todo-").concat(todo.id, "\">\n                                    <p>").concat(todo.description, "</p>\n                                </label>\n                            </div>"));
+    }
+  })["catch"](function (error) {
+    console.log(error);
+  });
+}
+
+function loadTodos() {
+  //verificar se exitem Tarefas e carregar
+  axios.get("/api/todos").then(function (response) {
+    var data = response.data;
+
+    if (typeof data.type != "undefined" && data.type == "success") {
+      var todos = data.todos;
+      var todoList = $(".todo-list");
+
+      if (todos.length == 0) {
+        todoList.append('<p class="empty">Sua lista de tarefas está vazia 😄</p>');
+        return false;
+      }
+
+      todoList.empty();
+      todos.forEach(function (todo) {
+        var todoDone = todo.status ? "done" : "";
+        todoList.append("<div class=\"todo ".concat(todoDone, "\">\n                                        <label for=\"todo-").concat(todo.id, "\">\n                                            <input type=\"checkbox\" id=\"todo-").concat(todo.id, "\">\n                                            <p>").concat(todo.description, "</p>\n                                        </label>\n                                    </div>"));
+      });
+    }
+  })["catch"](function (error) {
+    var todoList = $(".todo-list");
+    todoList.append('<p class="empty">Falha ao tentar buscar as tarefas 🤕</p>');
+  });
+}
 
 /***/ }),
 
