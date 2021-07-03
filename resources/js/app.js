@@ -3,9 +3,8 @@ require("./bootstrap");
 $(window).on("load", () => {
     loadTodos();
 
-    $(".add-item button").on("click", () => {
-        addTodo();
-    });
+    $(".add-item button").on("click", addTodo);
+
     $(".add-item input").on("keydown", ({ key }) => {
         if (key === "Enter") {
             addTodo();
@@ -24,18 +23,34 @@ function addTodo() {
             description,
             status
         })
-        .then(function(response) {
-            const { data } = response;
+        .then(function({ data }) {
             if (typeof data.type != "undefined" && data.type == "success") {
-                const todo = data.todo;
-                const todoList = $(".todo-list");
+                loadTodos();
+            }
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+}
 
-                todoList.append(`<div class="todo">
-                                <label for="todo-${todo.id}">
-                                    <input type="checkbox" id="todo-${todo.id}">
-                                    <p>${todo.description}</p>
-                                </label>
-                            </div>`);
+function updateTodo(event) {
+    event.preventDefault();
+
+    const idTodo = $(event.currentTarget)
+        .find("input")
+        .attr("id")
+        .replace("todo-", "");
+
+    const isDone = $(event.currentTarget)
+        .parent()
+        .hasClass("done");
+    const status = isDone ? 0 : 1;
+
+    axios
+        .put(`/api/todos/${idTodo}`, { status })
+        .then(function({ data }) {
+            if (typeof data.type != "undefined" && data.type == "success") {
+                loadTodos();
             }
         })
         .catch(function(error) {
@@ -72,6 +87,8 @@ function loadTodos() {
                                         </label>
                                     </div>`);
                 });
+
+                $(".todo label").on("click", updateTodo);
             }
         })
         .catch(function(error) {
