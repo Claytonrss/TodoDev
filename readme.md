@@ -17,8 +17,6 @@
 -   Axios
 -   API REST
 
-## Requisitos
-
 ## Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas: Git, PHP (>= 7.0.0), Composer e MySQL.
