@@ -12,11 +12,8 @@
 </head>
 
 <body>
-    <div class="loading hide">
-        <div class="spinner-grow" role="status">
-            <span class="visually-hidden"></span>
-        </div>
-    </div>
+
+    <!-- Content -->
     <div class="container">
         <header>
             <img src="{{ asset('images/logo.svg') }}" alt="Logo da Lista de Tarefas">
@@ -32,7 +29,35 @@
                 
             </section>
         </main>
+    </div>
 
+    <!-- Loading -->
+    <div class="loading hide">
+        <div class="spinner-grow" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalAlert" tabindex="-1" role="dialog" aria-labelledby="modalAlertTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="modalAlertLongTitle">Problema 😐</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="alert alert-danger" role="alert">
+                    <p id="msg-error" class="mb-0"></p>
+                </div>
+            </div>
+            <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div> -->
+        </div>
+        </div>
     </div>
 
 

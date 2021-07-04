@@ -15,23 +15,37 @@ $(window).on("load", () => {
 function addTodo() {
     showLoading();
     const description = $(".add-item input").val();
-    const status = 0;
+    const status = "0";
 
-    $(".add-item input").val("");
+    if (description == "") {
+        showError("O título da tarefa não pode estar vazio.");
+        return false;
+    }
+
+    $(".add-item input")
+        .val("")
+        .trigger("focus");
 
     axios
         .post("/api/todos", {
             description,
             status
         })
-        .then(function({ data }) {
+        .then(({ data }) => {
             if (typeof data.type != "undefined" && data.type == "success") {
                 loadTodos();
+            } else {
+                showError(
+                    "Falha ao gravar a tarefa. Por favor tente novamente mais tarde."
+                );
             }
         })
-        .catch(function(error) {
-            console.log(error);
-        });
+        .catch(error => {
+            showError(
+                "Falha ao gravar a tarefa. Por favor tente novamente mais tarde."
+            );
+        })
+        .then();
 }
 
 function updateTodo(event) {
@@ -53,10 +67,16 @@ function updateTodo(event) {
         .then(function({ data }) {
             if (typeof data.type != "undefined" && data.type == "success") {
                 loadTodos();
+            } else {
+                showError(
+                    "Falha ao atualizar a tarefa. Por favor tente novamente mais tarde."
+                );
             }
         })
         .catch(function(error) {
-            console.log(error);
+            showError(
+                "Falha ao atualizar a tarefa. Por favor tente novamente mais tarde."
+            );
         });
 }
 
@@ -73,23 +93,29 @@ function deleteTodo(event) {
         .then(function({ data }) {
             if (typeof data.type != "undefined" && data.type == "success") {
                 loadTodos();
+            } else {
+                showError(
+                    "Falha ao excluir a tarefa. Por favor tente novamente mais tarde."
+                );
             }
         })
         .catch(function(error) {
-            console.log(error);
+            showError(
+                "Falha ao excluir a tarefa. Por favor tente novamente mais tarde."
+            );
         });
 }
 
 function loadTodos() {
     //verificar se exitem Tarefas e carregar
     showLoading();
+    const todoList = $(".todo-list");
     axios
         .get("/api/todos")
         .then(function(response) {
             const { data } = response;
             if (typeof data.type != "undefined" && data.type == "success") {
                 const todos = data.todos;
-                const todoList = $(".todo-list");
 
                 todoList.empty();
 
@@ -116,12 +142,15 @@ function loadTodos() {
 
                 $(".todo label").on("click", updateTodo);
                 $(".todo .delete").on("click", deleteTodo);
+            } else {
+                todoList.append(
+                    '<p class="empty alert alert-danger">Falha ao tentar buscar as tarefas 🤕</p>'
+                );
             }
         })
         .catch(function(error) {
-            const todoList = $(".todo-list");
             todoList.append(
-                '<p class="empty">Falha ao tentar buscar as tarefas 🤕</p>'
+                '<p class="empty alert alert-danger">Falha ao tentar buscar as tarefas 🤕</p>'
             );
         })
         .then(function() {
@@ -136,4 +165,10 @@ function showLoading() {
 
 function hideLoading() {
     $(".loading").addClass("hide");
+}
+
+function showError(message) {
+    hideLoading();
+    $("#msg-error").text(message);
+    $("#modalAlert").modal();
 }
