@@ -12,6 +12,11 @@
 </head>
 
 <body>
+    <div class="loading hide">
+        <div class="spinner-grow" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
     <div class="container">
         <header>
             <img src="{{ asset('images/logo.svg') }}" alt="Logo da Lista de Tarefas">
@@ -32,6 +37,9 @@
 
 
     <!-- Scripts -->
+    <script>
+        const IconDelete = `<div class="delete"><img src="{{ asset('images/delete.svg')}}" alt="Ícone deletar"></div>`;
+    </script>
     <script src="{{ asset('js/app.js') }}"></script>
     
 </body>

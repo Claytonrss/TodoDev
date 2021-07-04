@@ -373,7 +373,6 @@ video {
 *,
 *::after,
 *::before {
-  transition: 0.3s all ease-in-out;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -10404,6 +10403,7 @@ header {
   z-index: 2;
   padding-top: 2rem;
   padding-bottom: 2rem;
+  width: 100%;
 }
 header .add-item {
   margin-top: 1rem;
@@ -10441,6 +10441,7 @@ main .todo-list {
   justify-items: center;
   width: 100%;
   margin-top: 350px;
+  transition: 0.3s all ease-in-out;
 }
 main .todo-list .todo {
   width: 100%;
@@ -10453,6 +10454,7 @@ main .todo-list .todo {
   padding: 0.75rem;
   color: #1d1e22;
   position: relative;
+  transition: 0.3s all ease-in-out;
 }
 main .todo-list .todo + .todo {
   margin-top: 1rem;
@@ -10505,4 +10507,43 @@ main .todo-list .todo input[type=checkbox] {
   height: 16px;
   margin-right: 0.75rem;
   cursor: pointer;
+}
+main .todo-list .todo .delete {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  right: -6px;
+  top: -6px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+}
+main .todo-list .todo .delete img {
+  width: 16px;
+}
+main .todo-list .todo .delete:hover {
+  background-color: tomato;
+}
+
+.loading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: auto;
+  min-height: 100%;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hide {
+  display: none !important;
 }

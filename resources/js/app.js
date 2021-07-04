@@ -13,6 +13,7 @@ $(window).on("load", () => {
 });
 
 function addTodo() {
+    showLoading();
     const description = $(".add-item input").val();
     const status = 0;
 
@@ -35,6 +36,7 @@ function addTodo() {
 
 function updateTodo(event) {
     event.preventDefault();
+    showLoading();
 
     const idTodo = $(event.currentTarget)
         .find("input")
@@ -58,8 +60,29 @@ function updateTodo(event) {
         });
 }
 
+function deleteTodo(event) {
+    showLoading();
+    const idTodo = $(event.currentTarget)
+        .next()
+        .find("input")
+        .attr("id")
+        .replace("todo-", "");
+
+    axios
+        .delete(`/api/todos/${idTodo}`)
+        .then(function({ data }) {
+            if (typeof data.type != "undefined" && data.type == "success") {
+                loadTodos();
+            }
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+}
+
 function loadTodos() {
     //verificar se exitem Tarefas e carregar
+    showLoading();
     axios
         .get("/api/todos")
         .then(function(response) {
@@ -68,6 +91,8 @@ function loadTodos() {
                 const todos = data.todos;
                 const todoList = $(".todo-list");
 
+                todoList.empty();
+
                 if (todos.length == 0) {
                     todoList.append(
                         '<p class="empty">Sua lista de tarefas está vazia 😄</p>'
@@ -75,20 +100,22 @@ function loadTodos() {
                     return false;
                 }
 
-                todoList.empty();
-
                 todos.forEach(todo => {
                     const todoDone = todo.status ? "done" : "";
 
-                    todoList.append(`<div class="todo ${todoDone}">
-                                        <label for="todo-${todo.id}">
-                                            <input type="checkbox" id="todo-${todo.id}">
-                                            <p>${todo.description}</p>
-                                        </label>
-                                    </div>`);
+                    todoList.append(
+                        `<div class="todo ${todoDone}">` +
+                            IconDelete +
+                            `<label for="todo-${todo.id}">
+                                <input type="checkbox" id="todo-${todo.id}">
+                                <p>${todo.description}</p>
+                            </label>
+                        </div>`
+                    );
                 });
 
                 $(".todo label").on("click", updateTodo);
+                $(".todo .delete").on("click", deleteTodo);
             }
         })
         .catch(function(error) {
@@ -96,5 +123,17 @@ function loadTodos() {
             todoList.append(
                 '<p class="empty">Falha ao tentar buscar as tarefas 🤕</p>'
             );
+        })
+        .then(function() {
+            hideLoading();
         });
+}
+
+function showLoading() {
+    $(".loading").css("height", $(document).height());
+    $(".loading").removeClass("hide");
+}
+
+function hideLoading() {
+    $(".loading").addClass("hide");
 }
