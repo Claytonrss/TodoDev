@@ -10547,3 +10547,7 @@ main .todo-list .todo .delete:hover {
 .hide {
   display: none !important;
 }
+
+.modal {
+  color: #1d1e22;
+}
