@@ -8,41 +8,34 @@ use Tests\TestCase;
 
 class TodoTest extends TestCase
 {
-    /*TESTES UNITÁRIOS DA API REST*/
-
-    public function testApplication()
+    public function testTodoApplication()
     {
-        //Verificar se a aplicação está online
         $response = $this->json('GET', '/');
         $response->assertStatus(200);
     }
 
-    public function testListTodoAPI()
+    public function testRouteListTodoAPI()
     {
-        //Teste da Rota para listar as tarefas
         $response = $this->json('GET', 'api/todos');
         $response->assertStatus(200);
         $response->assertJson(['type' => 'success']);
     }
 
-    public function testCreateTodoAPI()
+    public function testRouteCreateTodoAPI()
     {
-        //Teste da Rota para criar uma tarefa
         $response = $this->json('POST', 'api/todos', ['description' => 'Teste unitário', 'status' => '0']);
         $response->assertStatus(200);
         $response->assertJson(['type' => 'success']);
     }
 
-    public function testUpdateTodoAPI()
+    public function testRouteUpdateTodoAPI()
     {
-        //Teste da Rota para atualizar uma tarefa
         $response = $this->json('PUT', 'api/todos/1', ['status' => '1']);
         $response->assertStatus(200);
     }
 
-    public function testDeleteTodoAPI()
+    public function testRouteDeleteTodoAPI()
     {
-        //Teste da Rota para deletar uma tarefa
         $response = $this->json('DELETE', 'api/todos/1');
         $response->assertStatus(200);
     }

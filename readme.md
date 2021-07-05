@@ -1,8 +1,8 @@
-<p align="center">
-<img src="./public/images/logo-readme.png" width="800">
-</p>
-
 # TodoDev - A sua lista de tarefas
+
+## Demonstração
+
+![](tododev.gif)
 
 ## Tecnologias utilizadas
 
@@ -11,6 +11,7 @@
 -   MySQL
 -   HTML5
 -   CSS3
+-   SASS
 -   Bootstrap
 -   Javascript
 -   Jquery
