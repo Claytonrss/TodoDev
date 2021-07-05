@@ -18,8 +18,6 @@
 -   API REST
 -   PHPUnit
 
-## Requisitos
-
 ## Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas: Git, PHP (>= 7.0.0), Composer e MySQL.
@@ -69,7 +67,7 @@ Agora você pode acessar o servidor em [http://localhost:8000](http://localhost:
 
 ## Especificação da API
 
-Utilizando os passos anteriores, é possível também acessar a API construída com Laravel em [http: // localhost: 8000/api/](http://localhost:8000/api/)
+Utilizando os passos anteriores, é possível também acessar a API construída com Laravel em [http://localhost:8000/api/](http://localhost:8000/api/)
 
 ### Endpoints:
 
