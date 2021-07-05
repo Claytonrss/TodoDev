@@ -16,6 +16,7 @@
 -   Jquery
 -   Axios
 -   API REST
+-   PHPUnit
 
 ## Requisitos
 
@@ -33,9 +34,11 @@ Acesse a pasta do repositório
 
     cd TodoDev
 
-Instale todas as dependências utilizando o composer
+Instale todas as dependências utilizando os comandos
 
     composer install
+    npm install
+    npm run dev
 
 Definindo um banco de dados
 
@@ -163,6 +166,14 @@ Exemplo do corpo da resposta:
 {
   "type": "success"
 }
+```
+
+## Rodando os Testes
+
+Foi utilizado o PHPUnit para escrever os testes unitários. Para rodar os testes, execute o seguinte comando:
+
+```
+  ./vendor/bin/phpunit
 ```
 
 ## Autor
